@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#find the host name
+hostn=$(hostname);
+
+#find the current display resolution
+resolution=$(xdpyinfo | awk '/^screen #0:/,/resolution/ {if ($1=="dimensions:") print $2;}');
+
+echo host $hostn detected.
+echo resolution $resolution detected.
+
+# you can get the numbers in args via:
+# first put the monitor in this resolution. Then:
+# xsetwacom --list devices
+#  this will show you the id number of the pen/stylus device 
+#  - eg, 12
+# then, run xinput_calibrator --device 12, it will give you something
+# close to the numbers below. Then you will need some trial and error
+# tweaks to get it just right.
+#
+# Sometimes (eg, if the full screen is being used but not at full resolution)
+# you get numbers like this out of xinput_calibrator:
+#       Option  "MinX"  "-4554"
+#       Option  "MaxX"  "32314"
+#       Option  "MinY"  "-60"
+#       Option  "MaxY"  "15765"
+# args = "-4554 -60 32314 15765" will not work. But 
+# args = "0 0 (32314-4554) (15765-60) gets it perfectly!
+
+
+case "$hostn" in
+    aglaya)
+        case "$resolution" in
+            2560x1440)
+                #args="158 257 29487 16693";
+                args="0 0 29350 16500";
+                # xsetwacom --get 12 all
+                # the numbers you need are in the line for Option Area: eg,
+                #  - Option "Area" "3717 57 17816 14133"
+                #echo "xsetwacom args are $args".
+            ;;
+
+            *)
+                echo "$0: xsetwacom args for "$hostn:"$resolution"" not known."
+                exit 1;
+            ;;
+        esac
+    ;;
+esac
+
+
+# get the ids of all Wacom devices
+allWacomIDs=$(xsetwacom --list devices | perl -ane '$_ =~ /id:\s*([0-9]*)\s/; print $1 . "\n"';)
+#echo $allWacomIDs;
+
+# set each Wacom ID's Area parameter to the above
+
+for id in $allWacomIDs; do
+	echo running "xsetwacom --set $id Area $args"
+	xsetwacom --set $id Area $args;
+done
+
+echo ""
+echo "TODO: support general resolutions using an inbuilt calculator."
+echo "to support XxY, use the following Area line: (THE FOLLOWING IS WRONG,"
+echo "WORK IT OUT PROPERLY!"
+echo "93+(X-93)/1600*29300, 146+(Y-146)/1600*29300, 29393-(X-93)/1600*29300, ?"

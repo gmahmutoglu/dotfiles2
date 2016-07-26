@@ -1,2 +1,7 @@
+
 [Default Applications]
 application/pdf=zathura.desktop
+image=gpicview.desktop
+image/png=gpicview.desktop
+image/jpeg=gpicview.desktop
+inode/directory=ranger.desktop

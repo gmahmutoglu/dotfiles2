@@ -1,13 +1,13 @@
 #!/bin/bash
 
-TouchscreenDevice='Wacom ISDv4 5002 Finger'
+TouchscreenDevice='Wacom Co.,Ltd. Pen and multitouch sensor Finger'
 TouchpadDevice='SynPS/2 Synaptics TouchPad'
-LaptopScreenName='eDP1'
+LaptopScreenName='eDP-1'
 ExternalScreenName='DP1-1'
 
-WacomDevice="Wacom ISDv4 5002"
-WacomStylus="$WacomDevice Pen stylus"
-WacomEraser="$WacomDevice Pen eraser"
+WacomDevice="Wacom Co.,Ltd. Pen and multitouch sensor"
+WacomStylus="$WacomDevice Pen"
+WacomEraser="$WacomDevice Pen"
 
 touchpadEnabled=$(xinput --list-props "$TouchpadDevice" | awk '/Device Enabled/{print $NF}')
 screenMatrix=$(xinput --list-props "$TouchscreenDevice" | awk '/Coordinate Transformation Matrix/{print $5$6$7$8$9$10$11$12$NF}')
@@ -44,10 +44,6 @@ right='0 1 0 -1 0 1 0 0 1'
 #⎣  0  0   1 ⎦
 presentation='1.3333 0 -0.16666 0 1 0 0 0 1'
 
-xinput --map-to-output "$WacomStylus" eDP1
-xinput --map-to-output "$WacomEraser" eDP1
-xinput --map-to-output "$TouchscreenDevice" eDP1
-
 case $1 in 
     off)
             echo "Laptop display off"
@@ -56,7 +52,7 @@ case $1 in
 
     on)
             echo "Normal orientation"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate normal 
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate normal 
             ;;
     external)
             echo "Normal orientation"
@@ -64,15 +60,15 @@ case $1 in
             ;;
     normal)
             echo "Normal orientation"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate normal 
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate normal 
             ;;
     inverted)
             echo "Upside down orientation"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate inverted
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate inverted
             ;;
     dual)   
             echo "Dual head setting"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate inverted --output "$ExternalScreenName" --auto --right-of eDP1
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate inverted --output "$ExternalScreenName" --auto --right-of eDP1
             ;;
     clone)   
             echo "Clone screens"
@@ -80,11 +76,11 @@ case $1 in
             ;;
     dual-portrait)   
             echo "Dual head setting"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate right --output "$ExternalScreenName" --auto --right-of eDP1
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate right --output "$ExternalScreenName" --auto --right-of eDP1
             ;;
     portrait)   
             echo "Portrait mode"
-            xrandr --output "$LaptopScreenName" --mode 1920x1080 --rotate left
+            xrandr --output "$LaptopScreenName" --mode 2560x1440 --rotate left
             ;;
     presentation)
             echo "Presentation mode (1280x960)"
@@ -100,3 +96,6 @@ case $1 in
             ;;
 esac
 
+xinput --map-to-output "$WacomStylus" "$LaptopScreenName"
+xinput --map-to-output "$WacomEraser" "$LaptopScreenName"
+xinput --map-to-output "$TouchscreenDevice" "$LaptopScreenName"

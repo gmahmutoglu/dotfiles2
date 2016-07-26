@@ -4,7 +4,7 @@
 ## Notifications using dunst for battery alerts
 
 ## You're battery config may be different
-BATT=/sys/class/power_supply/CMB1
+BATT=/sys/class/power_supply/BAT0
 CAPACITY=$(cat $BATT/capacity)
 STATE=$(cat $BATT/status)
 
