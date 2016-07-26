@@ -1,4 +1,4 @@
-run('/usr/local/MATLAB/R2015b/toolbox/sundialsTB/startup_STB');
+run('/usr/local/MATLAB/R2016a/toolbox/sundialsTB/startup_STB');
 addpath('/home/amahmutoglu/pbd/cirsium/dev');
 addpath('/home/amahmutoglu/pbd/cirsium/dev/freq-dom');
 addpath('/home/amahmutoglu/matlab/matlab2tikz/src');

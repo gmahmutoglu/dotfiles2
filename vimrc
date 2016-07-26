@@ -250,8 +250,8 @@ fun! s:VisualSearch()
 endf
 
 " font setting for the new fujitsu
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
-"set guifont=Inconsolata 11
+set guifont=Bitstream\ Vera\ Sans\ Mono\ 10.5
+" set guifont=Inconsolata\ 11
 
 " use ranger as a file chooser -> <leader>r
 function! RangeChooser()

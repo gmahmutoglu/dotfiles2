@@ -1,6 +1,6 @@
 !  TO SOUrce, run
 !  xrdb -merge ~/.Xresources 
-Xft.dpi: 109
+Xft.dpi:96
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hitstyle: hintfull
@@ -16,8 +16,8 @@ URxvt*geometry:                115x40
 !URxvt*boldFont: xft:Bitstream Vera Sans Mono:bold:pixelsize=14:antialias=true:hinting=true
 !URxvt*boldFont: xft:Liberation Mono:bold:pixelsize=14:antialias=false:hinting=true
 !URxvt*font: xft:Inconsolata:pixelsize=14
-URxvt*font: xft:Inconsolata:style=Semibold:size=10
-URxvt*boldFont: xft:Inconsolata:style=bold:size=10
+URxvt*font: xft:Inconsolata:style=Semibold:size=11
+URxvt*boldFont: xft:Inconsolata:style=bold:size=11
 !URxvt*font: xft:Terminus:size=9
 !URxvt*font: xft:-*-*-*-*-*-*-14-*-*-*-*-*-*-*
 !URxvt*font: pango:DejaVu Sans Mono 10
