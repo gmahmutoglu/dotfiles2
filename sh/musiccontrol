@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ "$(pidof ncmpcpp)" ]; then
+    togglecommand="mpc toggle"
+elif [ "$(pidof cmus)" ]; then
+    togglecommand="cmus-remote --pause"
+elif [ "$(pidof spotify)" ]; then
+    togglecommand="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+fi
+
+case $1 in 
+    toggle)
+        eval $togglecommand
+esac

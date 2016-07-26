@@ -1,0 +1,29 @@
+snippet em "emphasis"
+\emph{${1:${VISUAL:text}}}
+endsnippet
+
+snippet " "inverted quotes"
+\`\`${1:${VISUAL:text}}''$0
+endsnippet
+
+snippet ig "include graphics"
+\includegraphics{$0}
+endsnippet
+
+snippet verb "verbatim" w
+\verb|${1:${VISUAL}}|
+endsnippet
+
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1}}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet ac "acronym"
+\ac{${1:${VISUAL}}}
+endsnippet
+
+snippet bf "bold face"
+\textbf{${1:${VISUAL}}}
+endsnippet

@@ -1,0 +1,15 @@
+*~
+*.swp
+.*.swo
+*.latexmain
+*.log
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.ps
+*.pdf
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz

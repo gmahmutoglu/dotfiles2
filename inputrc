@@ -1,0 +1,18 @@
+set editing-mode vi
+
+set show-mode-in-prompt On
+
+$if mode=vi
+				"\e[A": history-search-backward
+				"\e[B": history-search-forward
+				"\e[C": forward-char
+				"\e[D": backward-char
+				"\ep": yank-last-arg  
+
+				###########################################################
+				## Keymaps for when we're in command mode (e.g., after hitting ESC)
+				set keymap vi-command
+				"k": history-search-backward
+				"j": history-search-forward
+				"v":""
+$endif

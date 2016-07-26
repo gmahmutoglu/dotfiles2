@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/amahmutoglu/Documents/MATLAB/freqdom-noise-analysis/code'
+let g:netrw_dirhist_2='/home/amahmutoglu/.vim/bundle/vim-matlab'
+let g:netrw_dirhist_3='/home/amahmutoglu/.vim/bundle/vim-matlab/syntax'
+let g:netrw_dirhist_4='/home/amahmutoglu/GitVersionTree/GitVersionTree'
+let g:netrw_dirhist_5='/home/amahmutoglu/gitolite-admin/conf'
+let g:netrw_dirhist_6='/home/amahmutoglu/.vim/bundle/vim-matlab/compiler'
+let g:netrw_dirhist_7='/home/amahmutoglu/install-tl-20140404/readme-txt.dir'
+let g:netrw_dirhist_8='/etc/profile.d'

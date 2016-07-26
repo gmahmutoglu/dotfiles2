@@ -1,0 +1,133 @@
+= 		 auto-indent
+
+-----------------------------------------------------------------------
+
+/\<[A-Z]\{2,4\}\> find all upper case words 2-4 chars long
+
+-----------------------------------------------------------------------
+
+`` back to last cursor position
+
+-----------------------------------------------------------------------
+
+:%s/-\(\d\{2\}\)/\=-submatch(1)-1/g    increment numbers in form -xx , useful for sequential file names etc.
+
+-----------------------------------------------------------------------
+
+:%s/\(\<[A-Z]\{2,}\>\)/\\textsc\{\L\1\}/gc - replace uppercase words with small caps
+
+-----------------------------------------------------------------------
+
+replace "\lrp{foo}" with "(foo)"
+
+%s/\\lrp{\(.\{-\}\)}/(\1)/gc 
+
+-------------------------------------------------------------------------
+
+DelimitMate plugin:
+don't jump when adding closing pair:
+in function 
+function! delimitMate#SkipDelim(char) "{{{
+modify 
+		return a:char . "\<Del>"
+as
+		return a:char . "\<Left>"
+
+-----------------------------------------------------------------------
+
+Repeat last action on visual selection
+:normal .
+
+-----------------------------------------------------------------------
+
+Pathogen -- generate help tags
+:Helptags
+
+-----------------------------------------------------------------------
+
+repeat last serch and repalce:
+&
+
+-----------------------------------------------------------------------
+
+repeat last colon command
+
+@:
+
+----------------------------------------------------------------------
+
+search and go to end of phrase:
+/phrase/e
+
+or use //e after last search
+
+----------------------------------------------------------------------
+
+for reading documents: navigate with
+ctrl-e, ctrl-y
+or larger jumps
+ctrl-f, ctrl-d, ctrl-b
+
+----------------------------------------------------------------------
+
+mlint with syntastic:
+    symlink mlint /usr/local/MATLAB/R2015b/bin/glnxa64/mlint 
+to some location in path, e.g., /usr/bin
+
+----------------------------------------------------------------------
+
+delete all lines that don't match the pattern
+
+:g!/pattern/d
+
+
+----------------------------------------------------------------------
+
+re-select last visual selection:
+
+gv
+
+
+----------------------------------------------------------------------
+
+generate incrented number series
+
+    :put =range(11,15)
+
+
+----------------------------------------------------------------------
+
+replace 
+    parameter
+not followed by 
+    real OR integer OR string
+with
+    paramter real
+
+%s/parameter \(real\|integer\|string\)\@!/parameter real /gc
+
+----------------------------------------------------------------------
+
+add to
+    function funcName(args)
+or
+    function out = funcName(args)
+a line with
+    uppercase funcName
+        
+    :%s/\(\s*\)function .\{-}\(\w\{-}\)(.\+)/\0\r\1% \U\2\E/gc
+
+useful for adding MATLAB comments
+
+The same thing for classes
+    :s/classdef \(\w\+\)/\0\r% \U\1\E/
+
+---------------------------------------------------------------------
+
+regex look behind negate
+
+find every instance of error that doesn't have a preceding
+
+"VAPP_" of "% if"
+
+\(VAPP_.*\|% if.*\)\@<!error

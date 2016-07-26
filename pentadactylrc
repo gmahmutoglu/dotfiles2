@@ -1,0 +1,10 @@
+"hg7201
+
+loadplugins '\.(js|penta)$'
+group user
+map -count -modes=n,v <C-j> <count>gT
+map -count -modes=n,v <C-k> <count>gt
+set cdpath=''
+set guioptions+=T
+
+" vim: set ft=pentadactyl:

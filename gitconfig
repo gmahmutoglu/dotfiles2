@@ -1,0 +1,26 @@
+[user]
+	name = A. Gokcen Mahmutoglu
+	email = amahmutoglu@berkeley.edu
+[merge]
+	tool = meld
+	conflictstyle = diff3
+[gui]
+	recentrepo = /home/amahmutoglu/dev
+[core]
+	excludesfile = /home/amahmutoglu/.gitignore
+	editor = vim
+[diff]
+	tool = meld
+        guitool = meld
+[difftool]
+        prompt = false
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 644x502+990+24
+	history-view-vpane-position = 227
+	main-window-view = HistoryView
+	file-view-vpane-position = 416
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[push]
+	default = tracking

@@ -1,0 +1,14 @@
+#"/usr/bin/xte 'keydown Alt_L' 'keydown Shift_L' 'key L' 'keyup Shift_L' 'keyup Alt_L' &amp;"
+#b:6
+#
+#"/usr/bin/xte 'keydown Alt_L' 'keydown Shift_L' 'key H' 'keyup Shift_L' 'keyup Alt_L' &amp;"
+#b:7
+#
+#"/usr/bin/xte 'keydown Alt_L' 'keydown Shift_L' 'key J' 'keyup Shift_L' 'keyup Alt_L' &amp;"
+#b:8
+#
+#"/usr/bin/xte 'keydown Alt_L' 'keydown Shift_L' 'key K' 'keyup Shift_L' 'keyup Alt_L' &amp;"
+#b:9
+
+"/usr/bin/xte 'key x'"
+    Mod3 + H

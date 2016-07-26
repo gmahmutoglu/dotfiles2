@@ -1,0 +1,9 @@
+nnoremap <C-j> gT
+nnoremap <C-k> gt
+nnoremap <C-j> gT
+nnoremap <C-k> gt
+nnoremap s :open google 
+nnoremap S :tabopen google 
+set focuscontent=true
+no gr :emenu View.Enter Reader View<CR>
+no gR :emenu View.Close Reader View<CR>
