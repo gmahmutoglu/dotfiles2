@@ -369,3 +369,6 @@ let g:LoupeCenterResults=0
 
 " paste into newline with correct indent
 nnoremap <leader>p o<c-r>*
+
+" open new ctrlp files in new tab
+let g:ctrlp_open_new_file = 't'
