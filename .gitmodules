@@ -1,0 +1,66 @@
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/MatlabFilesEdition"]
+	path = vim/bundle/MatlabFilesEdition
+	url = https://github.com/vim-scripts/MatlabFilesEdition.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/vim-eunuch"]
+	path = vim/bundle/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/vim-loupe"]
+	path = vim/bundle/vim-loupe
+	url = https://github.com/wincent/loupe.git
+[submodule "vim/bundle/vimtex"]
+	path = vim/bundle/vimtex
+	url = https://github.com/lervag/vimtex.git
+[submodule "vim/bundle/delimitMate"]
+	path = vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/vim-abolish"]
+	path = vim/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
+[submodule "vim/bundle/vim-easy-align"]
+	path = vim/bundle/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vim/bundle/vim-togglelist"]
+	path = vim/bundle/vim-togglelist
+	url = https://github.com/milkypostman/vim-togglelist.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim/bundle/vim-easygrep"]
+	path = vim/bundle/vim-easygrep
+	url = https://github.com/dkprice/vim-easygrep.git
+[submodule "vim/bundle/vim-gnupg"]
+	path = vim/bundle/vim-gnupg
+	url = https://github.com/jamessan/vim-gnupg.git
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/vim-yankstack"]
+	path = vim/bundle/vim-yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack.git
