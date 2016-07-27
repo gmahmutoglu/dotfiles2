@@ -1,7 +1,7 @@
 [submodule "vim/bundle/MatlabFilesEdition"]
 	path = vim/bundle/MatlabFilesEdition
 	url = https://github.com/vim-scripts/MatlabFilesEdition.git
-        ignore = untracked
+        ignore = dirty
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -23,6 +23,7 @@
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+        ignore = dirty
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
