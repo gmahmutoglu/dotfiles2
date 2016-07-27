@@ -1,6 +1,7 @@
 [submodule "vim/bundle/MatlabFilesEdition"]
 	path = vim/bundle/MatlabFilesEdition
 	url = https://github.com/vim-scripts/MatlabFilesEdition.git
+        ignore = untracked
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
