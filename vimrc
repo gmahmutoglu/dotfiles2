@@ -63,6 +63,7 @@ set softtabstop=4
 "tabs for filetypes
 autocmd FileType tex setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType matlab setlocal shiftwidth=4 tabstop=4 expandtab textwidth=79 formatoptions-=t
+autocmd FileType verilog setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd FileType text setlocal autoindent textwidth=79
 
 " change to file's directory
