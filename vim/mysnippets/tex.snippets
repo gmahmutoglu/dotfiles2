@@ -27,3 +27,14 @@ endsnippet
 snippet bf "bold face"
 \textbf{${1:${VISUAL}}}
 endsnippet
+
+snippet enuma "Enumerate with arabic numeral items" b
+\begin{enumerate}[label*=\arabic*.]
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet it "Individual item" b
+\item ${1}
+endsnippet
+
