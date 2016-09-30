@@ -183,8 +183,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 " Control key mappings
 imap <M-n> <C-N>
 nmap <M-w> <C-W>
-"omni completion
-nnoremap <leader>o :<C-X><C-O>
 
 " folding
 let g:LatexBox_Folding=1
@@ -291,6 +289,7 @@ function! RangeChooser()
 endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
+nnoremap <leader>o :<C-U>RangerChooser<CR>
 
 " shortcut for new tab
 nnoremap <leader>t :tab drop 
