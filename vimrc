@@ -368,6 +368,7 @@ set foldlevel=99
 nmap <leader>s <Plug>(LoupeClearHighlight)
 " don't center results
 let g:LoupeCenterResults=0
+let g:LoupeVeryMagic=0
 
 " paste into newline with correct indent
 nnoremap <leader>p o<c-r>*
