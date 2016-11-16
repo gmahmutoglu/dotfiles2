@@ -375,3 +375,6 @@ nnoremap <leader>p o<c-r>*
 
 " open new ctrlp files in new tab
 let g:ctrlp_open_new_file = 't'
+
+" always show the tabline
+set showtabline=2
