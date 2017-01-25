@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
-Name=Ranger
+Name=ranger-chooser
 Exec=urxvt -bg rgba:fd00/f600/e300/ffff -title "ranger file chooser---view and edit files" -e ranger %f

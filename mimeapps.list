@@ -4,4 +4,4 @@ image/vnd.djvu=zathura.desktop
 image=gpicview.desktop
 image/png=gpicview.desktop
 image/jpeg=gpicview.desktop
-inode/directory=ranger.desktop
+inode/directory=ranger-chooser.desktop
