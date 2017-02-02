@@ -22,5 +22,6 @@
 	file-view-vpane-position = 416
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        conflict-files = diff --name-only --diff-filter=U
 [push]
 	default = tracking
