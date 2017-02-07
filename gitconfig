@@ -23,5 +23,6 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
         conflict-files = diff --name-only --diff-filter=U
+        submodule-pull = submodule foreach git pull origin master
 [push]
 	default = tracking
