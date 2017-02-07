@@ -131,3 +131,10 @@ find every instance of error that doesn't have a preceding
 "VAPP_" of "% if"
 
 \(VAPP_.*\|% if.*\)\@<!error
+
+
+---------------------------------------------------------------------
+
+go to the next match and visually select it
+  gn
+  gN (go to previous)
