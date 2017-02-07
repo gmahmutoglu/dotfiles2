@@ -1,0 +1,1 @@
+/home/amahmutoglu/dotfiles/vimrc
