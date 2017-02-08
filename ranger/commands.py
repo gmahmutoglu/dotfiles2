@@ -56,3 +56,15 @@ class my_edit(Command):
         # This is a generic tab-completion function that iterates through the
         # content of the current directory.
         return self._tab_directory_content()
+
+class empty_trash(Command):
+    """:empty_trash
+
+    Empties the trash directory ~/.Trash
+    """
+
+    def execute(self):
+        self.fm.run("rm -rf /home/${USER}/.Trash/{*,.[^.]*}")
+    # Warning: [^.] is an essential part of the above command. Without it, all
+    # files and directories of the form ..* will be deleted, wiping out
+    # everything in your home directory.
