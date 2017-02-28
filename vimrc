@@ -378,3 +378,14 @@ let g:ctrlp_open_new_file = 't'
 
 " always show the tabline
 set showtabline=2
+
+" python PEP8 indentation settings
+au FileType python set
+            \ tabstop=4
+            \ softtabstop=4
+            \ shiftwidth=4
+            \ textwidth=79
+            \ expandtab
+            \ autoindent
+            \ fileformat=unix
+            \ colorcolumn=80
