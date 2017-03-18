@@ -109,9 +109,9 @@ autocmd BufEnter *.m    compiler mlint
 
 " use solarized color scheme
 if has('gui_running')
-	syntax enable
-	set background=light
-	colorscheme solarized
+    syntax enable
+    set background=light
+    colorscheme solarized
 endif
 
 " syntastic -- ignore matlab warning
@@ -189,15 +189,17 @@ let g:LatexBox_Folding=1
 "let g:LatexBox_fold_automatic=1
 
 " options for vimtex
-let g:vimtex_quickfix_ignored_warnings = ['Underfull',
-				\'Overfull',
-				\'specifier changed to', 
-				\'xparse',
-				\'LaTeX Font Warning',
-				\'IEEEtran.bst: No hyphenation pattern',
-				\'No \\author given',
-				\'Class scrreprt Warning:',
-                                \'Marginpar on page \d\+ moved']
+let g:vimtex_quickfix_warnings = {
+                                \ 'underfull' : 0,
+                                \ 'overfull' : 0,
+                                \ 'specifier changed to' : 0,
+                                \ 'xparse' : 0,
+                                \ 'LaTeX Font Warning' : 0,
+                                \ 'IEEEtran.bst: No hyphenation pattern' : 0,
+                                \ 'No \\author given' : 0,
+                                \ 'Class scrreprt Warning:' : 0,
+                                \ 'Marginpar on page \d\+ moved' : 0,
+                                \}
 
 let g:vimtex_view_method = 'zathura'
 
