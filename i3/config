@@ -269,3 +269,4 @@ mode "$mode_monitor" {
 }
 
 bindsym $mod+Shift+m mode "$mode_monitor"
+bindsym $mod+Shift+k exec --no-startup-id "~/sh/switchkeyboard.sh && killall -SIGUSR1 i3status"

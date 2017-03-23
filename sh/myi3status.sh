@@ -25,7 +25,9 @@ do
             musicstatus="${DT} ${artist} // ${album} // ${song}"
         fi
         musicstatus=$(echo ${musicstatus} | sed -e 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
-       	echo "${musicstatus} | ${vol} | $line" || exit 1
+
+        keyboardlayout=$(setxkbmap -query | awk '/layout:\s+\w+/{ print $2 }')
+        echo "${musicstatus} | ${vol} | keyboard: ${keyboardlayout} | $line" || exit 1
        	#printf "%-0s %s" "${artist} - ${song}" 	"| ${vol} | $line" || exit 1
 
 done
