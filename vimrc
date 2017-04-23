@@ -189,7 +189,7 @@ let g:LatexBox_Folding=1
 "let g:LatexBox_fold_automatic=1
 
 " options for vimtex
-let g:vimtex_quickfix_warnings = {
+let g:vimtex_quickfix_latexlog = {
                                 \ 'underfull' : 0,
                                 \ 'overfull' : 0,
                                 \ 'specifier changed to' : 0,
