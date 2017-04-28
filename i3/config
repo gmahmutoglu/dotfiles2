@@ -249,6 +249,11 @@ exec --no-startup-id dunst
 bindsym $mod+o exec urxvt -title "ranger -- rapid action mode" -e ranger
 for_window [title="ranger -- rapid action mode"] floating enable
 
+# open a floating terminal
+bindsym $mod+i exec urxvt -title "rapid action mode"
+# float the rapid action mode terminal
+for_window [title="rapid action mode"] floating enable
+
 # rotate screen to normal orientation
 # bindsym $mod+Shift+n exec ~/sh/laptopscreen.sh normal
 # external normal mode
