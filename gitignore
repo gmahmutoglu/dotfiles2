@@ -8,7 +8,6 @@
 *.blg
 *.dvi
 *.ps
-*.pdf
 *.out
 *.fdb_latexmk
 *.fls
