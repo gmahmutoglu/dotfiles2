@@ -5,3 +5,4 @@ image=gpicview.desktop
 image/png=gpicview.desktop
 image/jpeg=gpicview.desktop
 inode/directory=ranger-chooser.desktop
+text/x-shellscript=gvim.desktop
