@@ -220,6 +220,8 @@ for_window [title="ranger file chooser---view and edit files"] floating enable
 for_window [title="Onboard"] floating enable
 # float mailvelope windows
 for_window [title="Mailvelope"] floating enable
+# float pin entry window
+for_window [title="pinentry"] floating enable
 
 # shutdown mode
 
