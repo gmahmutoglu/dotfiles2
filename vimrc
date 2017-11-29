@@ -112,6 +112,10 @@ if has('gui_running')
     syntax enable
     set background=light
     colorscheme solarized
+else
+    syntax enable
+    set background=dark
+    colorscheme solarized
 endif
 
 " syntastic -- ignore matlab warning
@@ -144,6 +148,7 @@ let g:syntastic_matlab_mlint_quiet_messages = {
 
 " tagbar plugin shortcut
 nmap <leader>m :TagbarToggle<CR>
+nnoremap <leader>o :TagbarOpen fj<CR>
 let g:tagbar_autofocus=1
 let g:tagbar_autoclose = 1
 let g:tagbar_left=1
@@ -391,3 +396,19 @@ au FileType python set
             \ autoindent
             \ fileformat=unix
             \ colorcolumn=80
+" make backspace act like in most other programs
+set backspace=indent,eol,start
+
+
+" open splits in more natural locations
+set splitbelow
+set splitright
+
+
+" Airline theme
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
+" where do we generate project tags (relative tot he project path)
+"let g:gutentags_ctags_tagfile='.git/tags'
+let g:gutentags_cache_dir='~/pbd/tags'
