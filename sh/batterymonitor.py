@@ -28,11 +28,16 @@ def main():
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(build_menu())
     notify.init(APPINDICATOR_ID)
-    glib.timeout_add(3*1000, battery_timer) # call every 5 mins
+    glib.timeout_add(300*1000, battery_timer) # call every 5 mins
     gtk.main()
 
 def battery_timer(*args):
-    show(None)
+    with open(BATTERY_STAT) as stat:
+        stat_str = stat.read().strip()
+   
+    if stat_str.lower() != 'charging':
+        show(None, stat_str)
+
     return True
 
 def build_menu():
@@ -46,21 +51,21 @@ def build_menu():
     menu.show_all()
     return menu
 
-def show(menu_item):
-    with open(BATTERY_STAT) as stat:
-        stat_str = stat.read().strip()
-   
-    if stat_str.lower() != 'charging':
-        with open(BATTERY_CAP) as cap:
-            cap_str = cap.read().strip()
-            message = "%s (%s)" % (cap_str, stat_str)
-            notification = notify.Notification.new(
-                                                  "<b>Battery Status:<br></b>",
-                                                  message, None)
-            if int(cap_str) <= 30:
-                notification.set_urgency(2)
+def show(menu_item, stat_str=None):
+    if stat_str is None:
+        with open(BATTERY_STAT) as stat:
+            stat_str = stat.read().strip()
 
-            notification.show()
+    with open(BATTERY_CAP) as cap:
+        cap_str = cap.read().strip()
+        message = "%s (%s)" % (cap_str, stat_str)
+        notification = notify.Notification.new(
+                                              "<b>Battery Status:<br></b>",
+                                              message, None)
+        if int(cap_str) <= 30:
+            notification.set_urgency(2)
+
+        notification.show()
         
 
 def quit(menu_item):
