@@ -20,10 +20,11 @@ APPINDICATOR_ID = 'batterymonitor'
 BATTERY = "/sys/class/power_supply/BAT0/"
 BATTERY_CAP = BATTERY + "capacity"
 BATTERY_STAT = BATTERY + "status"
+ICON_PATH = '/usr/share/icons/Adwaita/24x24/devices/battery.png'
 
 def main():
     indicator = appindicator.Indicator.new(APPINDICATOR_ID, 
-       os.path.abspath('/usr/share/icons/Adwaita/24x24/devices/battery.png'),
+       os.path.abspath(ICON_PATH),
        appindicator.IndicatorCategory.SYSTEM_SERVICES)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(build_menu())
