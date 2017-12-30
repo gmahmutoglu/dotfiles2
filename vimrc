@@ -43,10 +43,6 @@ cabbr %% <C-R>=expand('%:p:h')<CR>
 " set hidden
 
 " disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -110,7 +106,7 @@ autocmd BufEnter *.m    compiler mlint
 " use solarized color scheme
 if has('gui_running')
     syntax enable
-    set background=light
+    set background=dark
     colorscheme solarized
 else
     syntax enable
@@ -412,3 +408,9 @@ let g:airline_solarized_bg='dark'
 " where do we generate project tags (relative tot he project path)
 "let g:gutentags_ctags_tagfile='.git/tags'
 let g:gutentags_cache_dir='~/pbd/tags'
+
+" arrow keys for window navigation
+nnoremap <left> <c-w>h
+nnoremap <right> <c-w>l
+nnoremap <up> <c-w>k
+nnoremap <down> <c-w>j
