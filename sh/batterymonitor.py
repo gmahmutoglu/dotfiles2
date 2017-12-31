@@ -28,7 +28,7 @@ class BatteryMonitor:
     BATTERY_STAT = BATTERY + "status"
     UPDATE_INTERVAL = 300 # seconds
     RUN_INTERVAL = 10 # seconds
-    UPDATE_PERCENT = 1
+    UPDATE_PERCENT = 5
     LOW_THRESHOLD = 30
 
     def __init__(self):
