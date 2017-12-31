@@ -15,63 +15,75 @@ from gi.repository import AppIndicator3 as appindicator
 from gi.repository import Notify as notify
 from gi.repository import GLib as glib
 
+class BatteryMonitor:
 
-APPINDICATOR_ID = 'batterymonitor'
-BATTERY = "/sys/class/power_supply/BAT0/"
-BATTERY_CAP = BATTERY + "capacity"
-BATTERY_STAT = BATTERY + "status"
-ICON_PATH = '/usr/share/icons/Adwaita/24x24/devices/battery.png'
+    """Battery monitoring class"""
 
-def main():
-    indicator = appindicator.Indicator.new(APPINDICATOR_ID, 
-       os.path.abspath(ICON_PATH),
-       appindicator.IndicatorCategory.SYSTEM_SERVICES)
-    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
-    indicator.set_menu(build_menu())
-    notify.init(APPINDICATOR_ID)
-    glib.timeout_add(300*1000, battery_timer) # call every 5 mins
-    gtk.main()
+    APPINDICATOR_ID = 'batterymonitor'
+    BATTERY = "/sys/class/power_supply/BAT0/"
+    BATTERY_CAP = BATTERY + "capacity"
+    BATTERY_STAT = BATTERY + "status"
+    ICON_PATH = '/usr/share/icons/Adwaita/24x24/devices/battery.png'
+    UPDATE_INTERVAL = 300 # seconds
+    LOW_THRESHOLD = 30
 
-def battery_timer(*args):
-    with open(BATTERY_STAT) as stat:
-        stat_str = stat.read().strip()
-   
-    if stat_str.lower() != 'charging':
-        show(None, stat_str)
+    def __init__(self):
+        self.indicator = appindicator.Indicator.new(self.APPINDICATOR_ID,
+                               os.path.abspath(self.ICON_PATH),
+                               appindicator.IndicatorCategory.SYSTEM_SERVICES)
+        self.indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+        self.indicator.set_menu(self.build_menu())
+        notify.init(self.APPINDICATOR_ID)
+        glib.timeout_add_seconds(self.UPDATE_INTERVAL, self.timer)
 
-    return True
-
-def build_menu():
-    menu = gtk.Menu()
-    item_show = gtk.MenuItem(label='show')
-    item_show.connect('activate', show)
-    menu.append(item_show)
-    item_quit = gtk.MenuItem('quit')
-    item_quit.connect('activate', quit)
-    menu.append(item_quit)
-    menu.show_all()
-    return menu
-
-def show(menu_item, stat_str=None):
-    if stat_str is None:
-        with open(BATTERY_STAT) as stat:
+    def timer(self):
+        with open(self.BATTERY_STAT) as stat:
             stat_str = stat.read().strip()
 
-    with open(BATTERY_CAP) as cap:
-        cap_str = cap.read().strip()
-        message = "%s (%s)" % (cap_str, stat_str)
-        notification = notify.Notification.new(
-                                              "<b>Battery Status:<br></b>",
-                                              message, None)
-        if int(cap_str) <= 30:
-            notification.set_urgency(2)
+        if stat_str.lower() == 'discharging':
+            self.show(None, stat_str)
 
-        notification.show()
-        
+        return True
 
-def quit(menu_item):
-    notify.uninit()
-    gtk.main_quit()
+    def build_menu(self):
+        menu = gtk.Menu()
+        item_show = gtk.MenuItem(label='show')
+        item_show.connect('activate', self.show)
+        menu.append(item_show)
+        item_quit = gtk.MenuItem('quit')
+        item_quit.connect('activate', self.quit)
+        menu.append(item_quit)
+        menu.show_all()
+        return menu
+
+    def show(self, menu_item=None, stat_str=None):
+        if stat_str is None:
+            with open(self.BATTERY_STAT) as stat:
+                stat_str = stat.read().strip()
+
+        with open(self.BATTERY_CAP) as cap:
+            cap_str = cap.read().strip()
+            message = "%s (%s)" % (cap_str, stat_str)
+            notification = notify.Notification.new(
+                                                  "<b>Battery Status:<br></b>",
+                                                  message, None)
+            if int(cap_str) <= self.LOW_THRESHOLD:
+                notification.set_urgency(2)
+
+            notification.show()
+
+    def start(self):
+        gtk.main()
+
+    def quit(self, menu_item):
+        notify.uninit()
+        gtk.main_quit()
+
+
+def main():
+    bm = BatteryMonitor()
+    bm.show()
+    bm.start()
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal.SIG_DFL)
