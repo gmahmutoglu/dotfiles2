@@ -179,6 +179,7 @@ imap <C-G> <Plug>delimitMateJumpMany
 " Ultisnips options
 let g:UltiSnipsJumpForwardTrigger="<C-F>"
 let g:UltiSnipsJumpBackwardTrigger="<C-G>"
+let g:UltiSnipsExpandTrigger = '<C-A>'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
 " Control key mappings
@@ -414,3 +415,8 @@ nnoremap <left> <c-w>h
 nnoremap <right> <c-w>l
 nnoremap <up> <c-w>k
 nnoremap <down> <c-w>j
+
+" use double esc to get out of terminal mode
+tnoremap <esc><esc> <c-w>N
+
+" 
