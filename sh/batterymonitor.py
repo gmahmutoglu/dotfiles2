@@ -5,6 +5,7 @@
 import os
 import gi
 import signal
+from datetime import datetime, timedelta
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('AppIndicator3', '0.1')
@@ -15,75 +16,102 @@ from gi.repository import AppIndicator3 as appindicator
 from gi.repository import Notify as notify
 from gi.repository import GLib as glib
 
+APPINDICATOR_ID = 'batterymonitor'
+ICON_PATH = '/usr/share/icons/Adwaita/24x24/devices/battery.png'
+
 class BatteryMonitor:
 
     """Battery monitoring class"""
 
-    APPINDICATOR_ID = 'batterymonitor'
     BATTERY = "/sys/class/power_supply/BAT0/"
     BATTERY_CAP = BATTERY + "capacity"
     BATTERY_STAT = BATTERY + "status"
-    ICON_PATH = '/usr/share/icons/Adwaita/24x24/devices/battery.png'
     UPDATE_INTERVAL = 300 # seconds
+    RUN_INTERVAL = 10 # seconds
+    UPDATE_PERCENT = 1
     LOW_THRESHOLD = 30
 
     def __init__(self):
-        self.indicator = appindicator.Indicator.new(self.APPINDICATOR_ID,
-                               os.path.abspath(self.ICON_PATH),
-                               appindicator.IndicatorCategory.SYSTEM_SERVICES)
-        self.indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
-        self.indicator.set_menu(self.build_menu())
-        notify.init(self.APPINDICATOR_ID)
-        glib.timeout_add_seconds(self.UPDATE_INTERVAL, self.timer)
+        self.capacity = int(self.get_capacity())
+        self.last_update = datetime.now()
+        glib.timeout_add_seconds(self.RUN_INTERVAL, self)
 
-    def timer(self):
-        with open(self.BATTERY_STAT) as stat:
-            stat_str = stat.read().strip()
+    def __call__(self, menu_item=None):
+        stat_str = self.get_status()
 
-        if stat_str.lower() == 'discharging':
-            self.show(None, stat_str)
+        if stat_str == 'discharging':
+            self.update(stat_str)
 
         return True
 
-    def build_menu(self):
-        menu = gtk.Menu()
-        item_show = gtk.MenuItem(label='show')
-        item_show.connect('activate', self.show)
-        menu.append(item_show)
-        item_quit = gtk.MenuItem('quit')
-        item_quit.connect('activate', self.quit)
-        menu.append(item_quit)
-        menu.show_all()
-        return menu
+    def update(self, stat_str):
+        cap_str = self.get_capacity()
+        now = datetime.now()
+        capacity = int(cap_str)
+        if (now > self.last_update + timedelta(seconds=self.UPDATE_INTERVAL)
+            or self.capacity - capacity > self.UPDATE_PERCENT):
+            # time or capacity check -> then show the status
+            self.show(None, stat_str, cap_str)
+            self.last_update = now
+            self.capacity = capacity
 
-    def show(self, menu_item=None, stat_str=None):
+    def show(self, menu_item=None, stat_str=None, cap_str=None):
         if stat_str is None:
-            with open(self.BATTERY_STAT) as stat:
-                stat_str = stat.read().strip()
+            stat_str = self.get_status()
 
+        if cap_str is None:
+            cap_str = self.get_capacity()
+            
+        message = "%s (%s)" % (cap_str, stat_str)
+        notification = notify.Notification.new("<b>Battery Status:<br></b>",
+                                               message, None)
+        if int(cap_str) <= self.LOW_THRESHOLD:
+            notification.set_urgency(2)
+
+        notification.show()
+
+    def get_status(self):
+        with open(self.BATTERY_STAT) as stat:
+            stat_str = stat.read().strip()
+
+        return stat_str.lower()
+
+    def get_capacity(self):
         with open(self.BATTERY_CAP) as cap:
             cap_str = cap.read().strip()
-            message = "%s (%s)" % (cap_str, stat_str)
-            notification = notify.Notification.new(
-                                                  "<b>Battery Status:<br></b>",
-                                                  message, None)
-            if int(cap_str) <= self.LOW_THRESHOLD:
-                notification.set_urgency(2)
 
-            notification.show()
+        return cap_str.lower()
 
-    def start(self):
-        gtk.main()
 
-    def quit(self, menu_item):
-        notify.uninit()
-        gtk.main_quit()
+def quit(menu_item):
+    notify.uninit()
+    gtk.main_quit()
 
+def build_menu(battery_monitor):
+    menu = gtk.Menu()
+    item_show = gtk.MenuItem(label='show')
+    item_show.connect('activate', battery_monitor.show)
+    menu.append(item_show)
+    item_quit = gtk.MenuItem('quit')
+    item_quit.connect('activate', quit)
+    menu.append(item_quit)
+    menu.show_all()
+    return menu
+
+def create_indicator(battery_monitor):
+    indicator = appindicator.Indicator.new(APPINDICATOR_ID,
+                           os.path.abspath(ICON_PATH),
+                           appindicator.IndicatorCategory.SYSTEM_SERVICES)
+    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+    indicator.set_menu(build_menu(battery_monitor))
+    notify.init(APPINDICATOR_ID)
+    return indicator
 
 def main():
     bm = BatteryMonitor()
+    indicator = create_indicator(bm)
     bm.show()
-    bm.start()
+    gtk.main()
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal.SIG_DFL)
